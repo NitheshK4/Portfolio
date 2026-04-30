@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nithesh Kumar Sekar | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Nithesh Kumar Sekar – CSE student at VIT-AP, Full-Stack Developer specializing in React, Node.js, PostgreSQL, Docker & Kubernetes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── CANVAS PARTICLES ── -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ── CUSTOM CURSOR ── -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="nav-logo">NK<span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">👋 Hello, I'm</p>
+      <h1 class="hero-name">Nithesh Kumar<br/><span class="gradient-text">Sekar</span></h1>
+      <div class="hero-role">
+        <span class="static-text">I build </span>
+        <span class="typed-text" id="typed"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-desc">Motivated CSE student at VIT-AP · Full-Stack Developer · Cloud & DevOps Enthusiast</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:nitheshk36@gmail.com" class="social-link" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/nithesh-kumar-sekar-nk" target="_blank" class="social-link" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/NitheshK4" target="_blank" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="tel:6369650113" class="social-link" title="Phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <span class="avatar-initials">NK</span>
+        </div>
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+      </div>
+      <div class="floating-badge badge-1"><span>🎓</span> VIT-AP</div>
+      <div class="floating-badge badge-2"><span>⚡</span> Full-Stack</div>
+      <div class="floating-badge badge-3"><span>☁️</span> AWS</div>
+      <div class="floating-badge badge-4"><span>🐳</span> Docker</div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">About Me</span>
+        <h2>Who <span>I Am</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a <strong>Computer Science & Engineering student</strong> at Vellore Institute of Technology – AP, passionate about building scalable, secure, and elegant software solutions.</p>
+          <p>With hands-on experience in <strong>full-stack development, database design, cloud architecture, and DevOps</strong>, I thrive at the intersection of clean code and real-world impact. I've built production-grade systems involving JWT authentication, MFA, Docker containerization, and Kubernetes orchestration.</p>
+          <p>Actively seeking internship opportunities to apply and sharpen my technical and analytical skills in a professional environment.</p>
+          <div class="about-stats">
+
+            <div class="stat-card">
+              <span class="stat-num">2+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">3</span>
+              <span class="stat-label">Certifications</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">2027</span>
+              <span class="stat-label">Graduating</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card glass-card">
+          <h3>Quick Info</h3>
+          <ul class="info-list">
+            <li><span class="info-icon">🎓</span><div><strong>VIT-AP</strong><br/>B.Tech CSE · 2023–2027</div></li>
+            <li><span class="info-icon">📍</span><div><strong>Amaravati, AP</strong><br/>Andhra Pradesh, India</div></li>
+            <li><span class="info-icon">💼</span><div><strong>Intern at Triosolution</strong><br/>Chennai, Tamil Nadu</div></li>
+            <li><span class="info-icon">🏛️</span><div><strong>ACM Student Chapter</strong><br/>Associate Member</div></li>
+            <li><span class="info-icon">📧</span><div><strong>Email</strong><br/>nitheshk36@gmail.com</div></li>
+            <li><span class="info-icon">📞</span><div><strong>Phone</strong><br/>+91 6369650113</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Technical Arsenal</span>
+        <h2>Skills & <span>Technologies</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">⚙️</div>
+          <h3>Programming & Concepts</h3>
+          <div class="skill-tags">
+            <span class="tag">OOP</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">Algorithms</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">SDLC</span>
+          </div>
+        </div>
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">🌐</div>
+          <h3>Full-Stack Development</h3>
+          <div class="skill-tags">
+            <span class="tag tag-cyan">React</span>
+            <span class="tag tag-cyan">Node.js</span>
+            <span class="tag tag-cyan">Express.js</span>
+            <span class="tag tag-cyan">JavaScript</span>
+            <span class="tag tag-cyan">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">🗄️</div>
+          <h3>Databases</h3>
+          <div class="skill-tags">
+            <span class="tag tag-purple">PostgreSQL</span>
+            <span class="tag tag-purple">SQL</span>
+            <span class="tag tag-purple">Redis</span>
+            <span class="tag tag-purple">Relational DB Design</span>
+          </div>
+        </div>
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">🔐</div>
+          <h3>Security & Auth</h3>
+          <div class="skill-tags">
+            <span class="tag tag-pink">JWT</span>
+            <span class="tag tag-pink">AES-256</span>
+            <span class="tag tag-pink">OAuth 2.0</span>
+            <span class="tag tag-pink">MFA / TOTP</span>
+            <span class="tag tag-pink">Razorpay</span>
+          </div>
+        </div>
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">🐳</div>
+          <h3>DevOps & Cloud</h3>
+          <div class="skill-tags">
+            <span class="tag tag-blue">Docker</span>
+            <span class="tag tag-blue">Kubernetes</span>
+            <span class="tag tag-blue">AWS</span>
+            <span class="tag tag-blue">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-category glass-card">
+          <div class="skill-cat-icon">🤖</div>
+          <h3>AI & Data</h3>
+          <div class="skill-tags">
+            <span class="tag tag-green">Machine Learning</span>
+            <span class="tag tag-green">NLP</span>
+            <span class="tag tag-green">Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Journey</span>
+        <h2>Experience & <span>Education</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item" data-side="right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-badge">💼 Experience</div>
+            <h3>Intern</h3>
+            <h4>Triosolution · Chennai, Tamil Nadu</h4>
+            <span class="timeline-date">Jun 2025 – Aug 2025</span>
+            <ul>
+              <li>Participated in project discussions and requirement analysis meetings</li>
+              <li>Assisted in technical research and preparation of basic project documentation</li>
+              <li>Coordinated with team members to complete assigned development tasks</li>
+              <li>Gained exposure to real-world development workflows and professional practices</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-badge">🏛️ Organization</div>
+            <h3>ACM Student Chapter – Associate Member</h3>
+            <h4>VIT-AP · Amaravati, Andhra Pradesh</h4>
+            <span class="timeline-date">Jun 2024 – Aug 2025</span>
+            <ul>
+              <li>Collaborated with faculty and student teams to organize workshops, coding competitions and technical events</li>
+              <li>Assisted in event planning, participant coordination and on-site technical support</li>
+              <li>Contributed to outreach activities to increase student engagement in computing programs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="right">
+          <div class="timeline-dot timeline-dot-edu"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-badge">🎓 Education</div>
+            <h3>B.Tech – Computer Science & Engineering</h3>
+            <h4>Vellore Institute of Technology – AP</h4>
+            <span class="timeline-date">2023 – 2027</span>
+            <ul>
+
+              <li>Coursework: Data Structures, OOP, DBMS, Machine Learning, Software Engineering</li>
+              <li>Actively participates in technical workshops and academic project work</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="left">
+          <div class="timeline-dot timeline-dot-edu"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-badge">🏫 School</div>
+            <h3>Class XII – CBSE</h3>
+            <h4>Sunbeam CBSE School · Vellore, Tamil Nadu</h4>
+            <span class="timeline-date">2022 – 2023</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">My Work</span>
+        <h2>Featured <span>Projects</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card glass-card">
+          <div class="project-header">
+            <div class="project-icon">🏭</div>
+            <div class="project-links">
+              <span class="project-type">Academic Project</span>
+            </div>
+          </div>
+          <h3>Supply Chain Management System</h3>
+          <p>A comprehensive system to manage suppliers, customers, orders, and shipments with real-time tracking and modular OOP design.</p>
+          <ul class="project-highlights">
+            <li>✦ Designed relational database using SQL for all system entities</li>
+            <li>✦ Implemented supplier/customer registration & order processing modules</li>
+            <li>✦ Developed shipment tracking across multiple stages</li>
+            <li>✦ Applied OOP principles for modular and maintainable code</li>
+            <li>✦ Collaborated on requirement analysis, task distribution & integration</li>
+          </ul>
+          <div class="project-tech">
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">OOP</span>
+            <span class="tech-tag">Database Design</span>
+            <span class="tech-tag">System Design</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card project-featured">
+          <div class="project-featured-badge">⭐ Featured</div>
+          <div class="project-header">
+            <div class="project-icon">✅</div>
+            <div class="project-links">
+              <span class="project-type">Full-Stack Project</span>
+            </div>
+          </div>
+          <h3>TodoPro Enterprise</h3>
+          <p>A production-grade, secure full-stack Todo application with enterprise-level authentication, encryption, and cloud-native deployment.</p>
+          <ul class="project-highlights">
+            <li>✦ Built with React, Node.js, Express, PostgreSQL & Redis</li>
+            <li>✦ AES-256 encryption for todos and sensitive user data</li>
+            <li>✦ JWT authentication with refresh tokens & secure session handling</li>
+            <li>✦ MFA (TOTP) & Google OAuth 2.0 for enhanced security</li>
+            <li>✦ Razorpay payment integration with order verification</li>
+            <li>✦ Deployed with Docker & Kubernetes for scalability</li>
+          </ul>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">OAuth 2.0</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ── -->
+  <section id="certifications" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Credentials</span>
+        <h2>Certifications & <span>Training</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card glass-card">
+          <div class="cert-icon">🌐</div>
+          <div class="cert-info">
+            <h3>Web Development</h3>
+            <p>Udemy</p>
+          </div>
+          <div class="cert-badge">Certified</div>
+        </div>
+        <div class="cert-card glass-card">
+          <div class="cert-icon">☁️</div>
+          <div class="cert-info">
+            <h3>AWS Cloud Architecting</h3>
+            <p>Amazon Web Services (AWS)</p>
+          </div>
+          <div class="cert-badge">Certified</div>
+        </div>
+        <div class="cert-card glass-card">
+          <div class="cert-icon">🤖</div>
+          <div class="cert-info">
+            <h3>Natural Language Processing</h3>
+            <p>Infosys Springboard</p>
+          </div>
+          <div class="cert-badge">Certified</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Let's Talk</span>
+        <h2>Get In <span>Touch</span></h2>
+        <div class="divider"></div>
+        <p class="section-sub">I'm actively looking for internship opportunities. Let's connect!</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card glass-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <a href="mailto:nitheshk36@gmail.com">nitheshk36@gmail.com</a>
+          </div>
+          <div class="contact-card glass-card">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <a href="tel:6369650113">+91 6369650113</a>
+          </div>
+          <div class="contact-card glass-card">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <a href="https://linkedin.com/in/nithesh-kumar-sekar-nk" target="_blank">nithesh-kumar-sekar-nk</a>
+          </div>
+          <div class="contact-card glass-card">
+            <div class="contact-icon">🐙</div>
+            <h3>GitHub</h3>
+            <a href="https://github.com/NitheshK4" target="_blank">NitheshK4</a>
+          </div>
+        </div>
+        <form class="contact-form glass-card" id="contact-form">
+          <h3>Send a Message</h3>
+          <p class="form-sub">Drop me a line and I'll get back to you within 24 hours.</p>
+          <div class="form-group">
+            <input type="text" id="form-name" placeholder="Your Name" required />
+            <label for="form-name">Your Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="form-email" placeholder="Your Email" required />
+            <label for="form-email">Your Email</label>
+          </div>
+          <div class="form-group">
+            <textarea id="form-message" placeholder="Your Message" rows="5" required></textarea>
+            <label for="form-message">Your Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">NK<span class="dot">.</span></div>
+      <p>Designed & built by <strong>Nithesh Kumar Sekar</strong></p>
+      <p class="footer-sub">© 2026 · All rights reserved</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
