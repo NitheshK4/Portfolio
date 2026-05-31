@@ -200,7 +200,7 @@ if (emailBtn) {
   emailBtn.addEventListener('click', () => {
     const subject = encodeURIComponent("Hi Nithesh, Inquiry from Portfolio");
     const body = encodeURIComponent("Hi Nithesh,\n\nI visited your portfolio and wanted to connect.\n\nBest regards,\n[Your Name]");
-    const mailtoUrl = `mailto:nitheshk36@gmail.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:nitheshk236@gmail.com?subject=${subject}&body=${body}`;
     
     // Create a temporary link to trigger click
     const tempLink = document.createElement('a');
