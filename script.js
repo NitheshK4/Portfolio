@@ -123,27 +123,38 @@ if (aboutSection) {
   }, { threshold: 0.3 }).observe(aboutSection);
 }
 
-// ── HERO NAME SCRAMBLE ──
-const chars = '█▓▒░◆◇○●';
+// ── HERO NAME SCRAMBLE (DECRYPTION SEQUENCER) ──
+const chars = '█▓▒░◆◇○●$¥▰▱▲▼';
 const nameEl = document.getElementById('hero-scramble-name');
 
 function startNameScramble() {
   if (!nameEl) return;
-  const full = 'NITHESH';
-  let scrambleCount = 0;
+  const target = 'NITHESH';
+  let currentIteration = 0;
+  const maxIterations = 45; // ~3.5 seconds total
+  const intervalTime = 75; 
   
   const scrambleInterval = setInterval(() => {
-    if (scrambleCount > 15) {
-      clearInterval(scrambleInterval);
-      nameEl.childNodes[0].textContent = 'NITHESH\n';
-    } else {
-      nameEl.childNodes[0].textContent = full.split('').map((_, i) => {
-        if (Math.random() > 0.4) return full[i];
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      scrambleCount++;
+    const progress = currentIteration / maxIterations;
+    const resolvedCount = Math.floor(progress * target.length);
+    
+    let result = '';
+    for (let i = 0; i < target.length; i++) {
+      if (i < resolvedCount) {
+        result += target[i];
+      } else {
+        result += chars[Math.floor(Math.random() * chars.length)];
+      }
     }
-  }, 80);
+    
+    nameEl.childNodes[0].textContent = result + '\n';
+    currentIteration++;
+    
+    if (currentIteration > maxIterations) {
+      clearInterval(scrambleInterval);
+      nameEl.childNodes[0].textContent = target + '\n';
+    }
+  }, intervalTime);
 }
 
 // ── SMOOTH PARALLAX ON HERO BG TEXT ──
@@ -197,3 +208,102 @@ if (emailBtn) {
     tempLink.click();
   });
 }
+
+// ── INTERACTIVE NEURAL CONSTELLATION CANVAS ──
+(function initNeuralCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width = 0, height = 0;
+  let particles = [];
+  const maxParticles = window.innerWidth < 768 ? 25 : 55;
+  const connectDist = 110;
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.45;
+      this.vy = (Math.random() - 0.5) * 0.45;
+      this.radius = Math.random() * 2 + 1;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 92, 57, 0.45)';
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < maxParticles; i++) {
+    particles.push(new Particle());
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < connectDist) {
+          const alpha = (1 - dist / connectDist) * 0.16;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(30, 78, 89, ${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+
+      const rect = canvas.getBoundingClientRect();
+      const mouseCanvasX = mx - rect.left;
+      const mouseCanvasY = my - rect.top;
+
+      if (mx >= rect.left && mx <= rect.right && my >= rect.top && my <= rect.bottom) {
+        const dx = particles[i].x - mouseCanvasX;
+        const dy = particles[i].y - mouseCanvasY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const mouseConnectDist = 140;
+
+        if (dist < mouseConnectDist) {
+          const alpha = (1 - dist / mouseConnectDist) * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouseCanvasX, mouseCanvasY);
+          ctx.strokeStyle = `rgba(255, 92, 57, ${alpha})`;
+          ctx.lineWidth = 1.0;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+})();
