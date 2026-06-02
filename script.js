@@ -97,16 +97,15 @@ document.querySelectorAll('.project-item').forEach(item => {
 });
 
 // ── STATS COUNTER ANIMATION ──
-const counted = {};
 const aboutSection = document.querySelector('.about');
 if (aboutSection) {
   new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.querySelectorAll('[data-count]').forEach(el => {
+        if (el.classList.contains('counted')) return;
+        el.classList.add('counted');
         const val = el.dataset.count;
-        if (counted[val]) return;
-        counted[val] = true;
         const target = +val;
         let current = 0;
         const interval = setInterval(() => {
@@ -115,7 +114,7 @@ if (aboutSection) {
             current = target;
             clearInterval(interval);
           }
-          const suffix = (target === 12) ? '+' : '';
+          const suffix = (target === 12 || target === 15) ? '+' : '';
           el.textContent = Math.round(current) + suffix;
         }, 18);
       });
