@@ -1008,92 +1008,100 @@ body.hero-ready .hero-bottom {
   border-bottom: 1px solid rgba(18, 18, 20, .05);
 }
 .git-timeline {
-  max-width: 900px;
+  position: relative;
+  max-width: 800px;
   margin: 4rem auto 0;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }
-.git-timeline-row {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  align-items: stretch;
-  position: relative;
-  padding-bottom: 2.5rem;
-}
-.git-timeline-row:last-child {
-  padding-bottom: 0;
-}
-.git-timeline-graph-wrap {
+/* Continuous vertical axis pipeline line */
+.git-timeline::before {
+  content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  pointer-events: none;
+  left: 40px; /* centers on the 80px left spacer column */
+  top: 15px;
+  bottom: 15px;
+  width: 4px;
+  background: linear-gradient(to bottom, rgba(255, 92, 57, 0.2), rgba(194, 144, 79, 0.2), rgba(30, 78, 89, 0.2));
+  border-radius: 2px;
   z-index: 1;
 }
-.git-timeline-svg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-.git-graph-spacer {
-  width: 120px;
-  height: 100%;
+
+.git-timeline-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center; /* centers the node and card vertically */
+  position: relative;
 }
 
-/* Branch Lines */
-.branch-line {
-  fill: none;
-  stroke-width: 4.5px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.branch-line.exp-trunk {
-  stroke: var(--accent);
-}
-.branch-line.edu-branch {
-  stroke: var(--accent2);
-}
-.branch-line.lead-branch {
-  stroke: #C2904F;
+.git-graph-spacer {
+  width: 80px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2; /* draws nodes on top of the vertical line */
 }
 
 /* Git Nodes */
 .git-node {
-  position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  border: 4px solid var(--bg);
-  box-shadow: 0 0 0 1px rgba(19, 31, 26, 0.08), 0 2px 4px rgba(19, 31, 26, 0.05);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              background-color 0.3s, 
-              box-shadow 0.3s,
-              filter 0.3s;
-  z-index: 2;
+  background: rgba(255, 255, 255, 0.65);
+  border: 3px solid rgba(19, 31, 26, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(19, 31, 26, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.git-node.node-exp-1 {
-  left: 50%;
-  background-color: var(--accent);
+
+.node-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  filter: grayscale(0.2);
+  transition: filter 0.3s, transform 0.3s;
 }
-.git-node.node-lead-1 {
-  left: 80%;
-  background-color: #C2904F;
+
+/* Branch Specific Border Colors */
+.git-node[data-branch="exp"] {
+  border-color: var(--accent);
 }
-.git-node.node-edu-1, .git-node.node-edu-2 {
-  left: 20%;
-  background-color: var(--accent2);
+.git-node[data-branch="lead"] {
+  border-color: #C2904F;
+}
+.git-node[data-branch="edu"] {
+  border-color: var(--accent2);
+}
+
+/* Row Hover States */
+.git-timeline-row:hover .git-node {
+  transform: scale(1.18);
+  background: rgba(255, 255, 255, 0.85);
+}
+.git-timeline-row:hover .git-node[data-branch="exp"] {
+  box-shadow: 0 0 20px rgba(255, 92, 57, 0.25), 0 4px 15px rgba(255, 92, 57, 0.1);
+}
+.git-timeline-row:hover .git-node[data-branch="lead"] {
+  box-shadow: 0 0 20px rgba(194, 144, 79, 0.25), 0 4px 15px rgba(194, 144, 79, 0.1);
+}
+.git-timeline-row:hover .git-node[data-branch="edu"] {
+  box-shadow: 0 0 20px rgba(30, 78, 89, 0.25), 0 4px 15px rgba(30, 78, 89, 0.1);
+}
+
+.git-timeline-row:hover .node-icon {
+  filter: grayscale(0);
+  transform: scale(1.1) rotate(4deg);
 }
 
 /* Commit Cards */
 .commit-card {
+  position: relative;
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
@@ -1101,7 +1109,7 @@ body.hero-ready .hero-bottom {
   backdrop-filter: blur(16px) saturate(120%);
   -webkit-backdrop-filter: blur(16px) saturate(120%);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
+  overflow: visible; /* show connector line */
   display: flex;
   flex-direction: column;
 }
@@ -1130,6 +1138,44 @@ body.hero-ready .hero-bottom {
 .commit-card[data-branch="edu"]:hover {
   border-color: var(--accent2);
   box-shadow: 0 15px 35px rgba(30, 78, 89, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* Horizontal Connector Lines */
+.commit-card::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0.7);
+  width: 22px;
+  height: 3px;
+  background: rgba(19, 31, 26, 0.08);
+  transform-origin: right;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.commit-card[data-branch="exp"]::before {
+  background: rgba(255, 92, 57, 0.15);
+}
+.commit-card[data-branch="lead"]::before {
+  background: rgba(194, 144, 79, 0.15);
+}
+.commit-card[data-branch="edu"]::before {
+  background: rgba(30, 78, 89, 0.15);
+}
+
+.git-timeline-row:hover .commit-card::before {
+  transform: translateY(-50%) scaleX(1);
+}
+.git-timeline-row:hover .commit-card[data-branch="exp"]::before {
+  background: var(--accent);
+}
+.git-timeline-row:hover .commit-card[data-branch="lead"]::before {
+  background: #C2904F;
+}
+.git-timeline-row:hover .commit-card[data-branch="edu"]::before {
+  background: var(--accent2);
 }
 
 /* Header style like git commit */
@@ -1217,43 +1263,31 @@ body.hero-ready .hero-bottom {
   color: #C2904F;
 }
 
-/* ── HOVER INTERACTION OVERRIDES ── */
-.git-node.hovered {
-  transform: translate(-50%, -50%) scale(1.45);
-}
-.git-node.hovered.node-exp-1 {
-  background-color: var(--accent);
-  box-shadow: 0 0 14px var(--accent);
-  filter: drop-shadow(0 0 8px var(--accent));
-}
-.git-node.hovered.node-edu-1, .git-node.hovered.node-edu-2 {
-  background-color: var(--accent2);
-  box-shadow: 0 0 14px var(--accent2);
-  filter: drop-shadow(0 0 8px var(--accent2));
-}
-.git-node.hovered.node-lead-1 {
-  background-color: #C2904F;
-  box-shadow: 0 0 14px #C2904F;
-  filter: drop-shadow(0 0 8px #C2904F);
-}
-
-/* Branch hover glows */
-.branch-line.hovered {
-  stroke-width: 5.5px;
-  opacity: 1;
-}
-
 /* Responsive Overrides */
 @media(max-width: 768px) {
-  .git-timeline-row {
-    grid-template-columns: 70px 1fr;
-    padding-bottom: 1.5rem;
+  .git-timeline {
+    gap: 1.5rem;
   }
-  .git-timeline-graph-wrap {
-    width: 70px;
+  .git-timeline-row {
+    grid-template-columns: 60px 1fr;
+  }
+  .git-timeline::before {
+    left: 30px;
   }
   .git-graph-spacer {
-    width: 70px;
+    width: 60px;
+  }
+  .git-node {
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
+  }
+  .node-icon {
+    font-size: 0.95rem;
+  }
+  .commit-card::before {
+    left: -14px;
+    width: 14px;
   }
 }
 

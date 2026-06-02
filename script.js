@@ -50,7 +50,6 @@
               overlay.remove();
               // Trigger text scramble once intro is gone
               startNameScramble();
-              if (window.updateTimelineGraph) window.updateTimelineGraph();
             }, 1000);
           }, 420);
         }, 120);
@@ -307,112 +306,5 @@ if (emailBtn) {
 
 })();
 
-// ── DYNAMIC SINGLE-SVG TIMELINE RENDERER ──
-window.updateTimelineGraph = function() {
-  const timeline = document.querySelector('.git-timeline');
-  const svg = document.getElementById('git-timeline-svg');
-  if (!timeline || !svg) return;
-  
-  const rows = timeline.querySelectorAll('.git-timeline-row');
-  const spacer = timeline.querySelector('.git-graph-spacer');
-  if (!spacer) return;
-  
-  const W = spacer.getBoundingClientRect().width;
-  const xExp = W * 0.5;
-  const xLead = W * 0.8;
-  const xEdu = W * 0.2;
-  
-  const timelineRect = timeline.getBoundingClientRect();
-  const yPositions = [];
-  
-  rows.forEach((row) => {
-    const card = row.querySelector('.commit-card');
-    if (card) {
-      const msg = card.querySelector('.commit-msg');
-      let yCenter;
-      if (msg) {
-        const msgRect = msg.getBoundingClientRect();
-        yCenter = (msgRect.top + msgRect.height / 2) - timelineRect.top;
-      } else {
-        const cardRect = card.getBoundingClientRect();
-        yCenter = (cardRect.top + 70) - timelineRect.top;
-      }
-      yPositions.push(yCenter);
-    } else {
-      yPositions.push(0);
-    }
-  });
-  
-  if (yPositions.length < 4) return;
-  
-  const [y1, y2, y3, y4] = yPositions;
-  
-  const dy12 = y2 - y1;
-  const dy23 = y3 - y2;
-  
-  // Position HTML nodes
-  const n1 = document.getElementById('node-1');
-  const n2 = document.getElementById('node-2');
-  const n3 = document.getElementById('node-3');
-  const n4 = document.getElementById('node-4');
-  
-  if (n1) { n1.style.left = `${xExp}px`; n1.style.top = `${y1}px`; }
-  if (n2) { n2.style.left = `${xLead}px`; n2.style.top = `${y2}px`; }
-  if (n3) { n3.style.left = `${xEdu}px`; n3.style.top = `${y3}px`; }
-  if (n4) { n4.style.left = `${xEdu}px`; n4.style.top = `${y4}px`; }
-  
-  // Set SVG dimensions
-  svg.setAttribute('width', W);
-  svg.setAttribute('height', timelineRect.height);
-  
-  // Draw path trunk
-  const pathExp = document.getElementById('path-exp');
-  if (pathExp) {
-    pathExp.setAttribute('d', `M ${xExp},0 L ${xExp},${y4 + 40}`);
-  }
-  
-  // Draw path leadership
-  const pathLead = document.getElementById('path-lead');
-  if (pathLead) {
-    const d = `M ${xExp},${y1} C ${xExp},${y1 + dy12 * 0.45} ${xLead},${y2 - dy12 * 0.45} ${xLead},${y2} C ${xLead},${y2 + dy23 * 0.45} ${xExp},${y3 - dy23 * 0.45} ${xExp},${y3}`;
-    pathLead.setAttribute('d', d);
-  }
-  
-  // Draw path education
-  const pathEdu = document.getElementById('path-education'); // wait! let's verify if the path element id in index.html is path-edu or path-education. It is path-edu! Let's make sure it is path-edu!
-  const pathEduEl = document.getElementById('path-edu');
-  if (pathEduEl) {
-    const d = `M ${xExp},${y2} C ${xExp},${y2 + dy23 * 0.45} ${xEdu},${y3 - dy23 * 0.45} ${xEdu},${y3} L ${xEdu},${y4 + 40}`;
-    pathEduEl.setAttribute('d', d);
-  }
-};
 
-// Bind resize and load listeners
-window.addEventListener('resize', window.updateTimelineGraph);
-window.addEventListener('load', () => {
-  setTimeout(window.updateTimelineGraph, 100);
-});
-
-// Card hover listeners to coordinate node and line animations
-document.querySelectorAll('.commit-card').forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    const nodeId = card.dataset.node;
-    const node = document.getElementById(nodeId);
-    if (node) node.classList.add('hovered');
-    
-    const branch = card.dataset.branch;
-    const path = document.getElementById(`path-${branch}`);
-    if (path) path.classList.add('hovered');
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    const nodeId = card.dataset.node;
-    const node = document.getElementById(nodeId);
-    if (node) node.classList.remove('hovered');
-    
-    const branch = card.dataset.branch;
-    const path = document.getElementById(`path-${branch}`);
-    if (path) path.classList.remove('hovered');
-  });
-});
 
