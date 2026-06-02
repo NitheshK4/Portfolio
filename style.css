@@ -1007,130 +1007,202 @@ body.hero-ready .hero-bottom {
   padding: 6rem 3rem;
   border-bottom: 1px solid rgba(18, 18, 20, .05);
 }
-.timeline {
-  position: relative;
+.git-timeline {
   max-width: 900px;
   margin: 4rem auto 0;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, rgba(18, 18, 20, 0.01), rgba(255, 92, 57, 0.2), rgba(18, 18, 20, 0.01));
-  transform: translateX(-50%);
-}
-.timeline-item {
   display: flex;
-  margin-bottom: 3rem;
+  flex-direction: column;
+}
+.git-timeline-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: stretch;
   position: relative;
+  padding-bottom: 2.5rem;
+}
+.git-timeline-row:last-child {
+  padding-bottom: 0;
+}
+.git-graph-cell {
+  position: relative;
+  height: 100%;
+}
+.git-graph-svg {
   width: 100%;
+  height: 100%;
+  display: block;
 }
-.timeline-item[data-side="right"] {
-  justify-content: flex-end;
+
+/* Branch Lines */
+.branch-line {
+  fill: none;
+  stroke-width: 3.5px;
+  stroke-linecap: round;
 }
-.timeline-item[data-side="left"] {
-  justify-content: flex-start;
+.branch-line.exp-trunk {
+  stroke: var(--accent);
 }
-.timeline-dot {
-  position: absolute;
-  left: 50%;
-  top: 2rem;
-  width: 10px;
-  height: 10px;
-  background: var(--bg);
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  box-shadow: 0 0 15px var(--accent);
+.branch-line.edu-branch {
+  stroke: var(--accent2);
 }
-.timeline-dot-edu {
-  border-color: var(--accent2);
-  box-shadow: 0 0 15px var(--accent2);
+.branch-line.lead-branch {
+  stroke: #C2904F;
 }
-.timeline-card {
-  width: 44%;
-  padding: 2rem;
+
+/* Git Nodes */
+.git-node {
+  stroke-width: 3px;
+  stroke: var(--bg);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              fill 0.3s, 
+              filter 0.3s;
+  transform-origin: center;
+}
+.git-node.node-exp-1 {
+  fill: var(--accent);
+}
+.git-node.node-lead-1 {
+  fill: #C2904F;
+}
+.git-node.node-edu-1, .git-node.node-edu-2 {
+  fill: var(--accent2);
+}
+
+/* Commit Cards */
+.commit-card {
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(19, 31, 26, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 30px rgba(19, 31, 26, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(16px) saturate(120%);
   -webkit-backdrop-filter: blur(16px) saturate(120%);
-  transition: all .3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.timeline-card:hover {
-  border-color: rgba(255, 92, 57, 0.3);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 15px 35px rgba(255, 92, 57, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+.commit-card[data-branch="exp"] {
+  border-left: 3px solid var(--accent);
+}
+.commit-card[data-branch="lead"] {
+  border-left: 3px solid #C2904F;
+}
+.commit-card[data-branch="edu"] {
+  border-left: 3px solid var(--accent2);
+}
+
+.commit-card:hover {
   transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 15px 35px rgba(19, 31, 26, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
-.timeline-item[data-side="left"] .timeline-card {
-  margin-left: 0;
-}
-.timeline-item[data-side="right"] .timeline-card {
-  margin-right: 0;
-}
-.timeline-badge {
+
+/* Header style like git commit */
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background: rgba(19, 31, 26, 0.02);
+  border-bottom: 1px solid rgba(19, 31, 26, 0.05);
   font-family: var(--fm);
-  font-size: .6rem;
-  color: var(--accent);
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  margin-bottom: .6rem;
-  display: inline-block;
-  border: 1px solid rgba(255, 92, 57, 0.2);
-  padding: 2px 8px;
-  border-radius: 100px;
-  background: rgba(255, 92, 57, 0.04);
+  font-size: 0.7rem;
 }
-.timeline-badge.edu {
-  color: var(--accent2);
-  border-color: rgba(30, 78, 89, 0.2);
-  background: rgba(30, 78, 89, 0.04);
-}
-.timeline-card h3 {
-  font-family: var(--fd);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--fg);
-  margin-bottom: .2rem;
-}
-.timeline-card h4 {
-  font-size: .8rem;
+.commit-hash {
   color: var(--muted);
   font-weight: 500;
-  margin-bottom: .8rem;
 }
-.timeline-date {
-  font-family: var(--fm);
-  font-size: .65rem;
+.commit-branch-tag {
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.commit-branch-tag.exp {
+  background: rgba(255, 92, 57, 0.06);
+  border: 1px solid rgba(255, 92, 57, 0.15);
   color: var(--accent);
-  margin-bottom: 1rem;
-  display: block;
 }
-.timeline-card ul {
+.commit-branch-tag.lead {
+  background: rgba(194, 144, 79, 0.06);
+  border: 1px solid rgba(194, 144, 79, 0.15);
+  color: #C2904F;
+}
+.commit-branch-tag.edu {
+  background: rgba(30, 78, 89, 0.06);
+  border: 1px solid rgba(30, 78, 89, 0.15);
+  color: var(--accent2);
+}
+
+.commit-body {
+  padding: 1.5rem;
+}
+.commit-meta {
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.commit-msg {
+  font-family: var(--fd);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 1rem;
+}
+.commit-details {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
+  padding-left: 0.2rem;
 }
-.timeline-card li {
-  font-size: .8rem;
+.commit-details li {
+  font-size: 0.8rem;
   color: rgba(19, 31, 26, 0.75);
   line-height: 1.6;
   position: relative;
-  padding-left: 12px;
+  padding-left: 14px;
 }
-.timeline-card li::before {
+.commit-details li::before {
   content: '→';
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-size: .75rem;
+  font-size: 0.75rem;
+}
+.commit-card[data-branch="edu"] .commit-details li::before {
+  color: var(--accent2);
+}
+.commit-card[data-branch="lead"] .commit-details li::before {
+  color: #C2904F;
+}
+
+/* ── HOVER INTERACTION OVERRIDES ── */
+.git-timeline-row:has(.commit-card:hover) .git-node {
+  transform: scale(1.4);
+}
+.git-timeline-row:has(.commit-card[data-branch="exp"]:hover) .git-node {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+.git-timeline-row:has(.commit-card[data-branch="edu"]:hover) .git-node {
+  fill: var(--accent2);
+  filter: drop-shadow(0 0 8px var(--accent2));
+}
+.git-timeline-row:has(.commit-card[data-branch="lead"]:hover) .git-node {
+  fill: #C2904F;
+  filter: drop-shadow(0 0 8px #C2904F);
+}
+
+/* Responsive Overrides */
+@media(max-width: 768px) {
+  .git-timeline-row {
+    grid-template-columns: 70px 1fr;
+    padding-bottom: 1.5rem;
+  }
 }
 
 /* ── CERTIFICATIONS ── */

@@ -70,7 +70,7 @@ document.addEventListener('mousemove', e => {
 });
 
 // Hover classes for mouse states on interactive elements
-document.querySelectorAll('a, button, .contact-link, .btn-a, .btn-b, .email-btn, .project-item, .service-item, .hero-terminal').forEach(el => {
+document.querySelectorAll('a, button, .contact-link, .btn-a, .btn-b, .email-btn, .project-item, .service-item, .hero-terminal, .commit-card').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
