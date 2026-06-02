@@ -1051,21 +1051,31 @@ body.hero-ready .hero-bottom {
 
 /* Git Nodes */
 .git-node {
-  stroke-width: 3px;
-  stroke: var(--bg);
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px rgba(19, 31, 26, 0.05);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              fill 0.3s, 
+              background-color 0.3s, 
+              box-shadow 0.3s,
               filter 0.3s;
-  transform-origin: center;
+  z-index: 2;
 }
 .git-node.node-exp-1 {
-  fill: var(--accent);
+  left: 50%;
+  background-color: var(--accent);
 }
 .git-node.node-lead-1 {
-  fill: #C2904F;
+  left: 80%;
+  background-color: #C2904F;
 }
 .git-node.node-edu-1, .git-node.node-edu-2 {
-  fill: var(--accent2);
+  left: 20%;
+  background-color: var(--accent2);
 }
 
 /* Commit Cards */
@@ -1092,9 +1102,20 @@ body.hero-ready .hero-bottom {
 }
 
 .commit-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 15px 35px rgba(19, 31, 26, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.6);
+}
+.commit-card[data-branch="exp"]:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 35px rgba(255, 92, 57, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+.commit-card[data-branch="lead"]:hover {
+  border-color: #C2904F;
+  box-shadow: 0 15px 35px rgba(194, 144, 79, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+.commit-card[data-branch="edu"]:hover {
+  border-color: var(--accent2);
+  box-shadow: 0 15px 35px rgba(30, 78, 89, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 /* Header style like git commit */
@@ -1167,11 +1188,13 @@ body.hero-ready .hero-bottom {
   padding-left: 14px;
 }
 .commit-details li::before {
-  content: '→';
+  content: '+';
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-size: 0.75rem;
+  font-family: var(--fm);
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 .commit-card[data-branch="edu"] .commit-details li::before {
   color: var(--accent2);
@@ -1182,19 +1205,36 @@ body.hero-ready .hero-bottom {
 
 /* ── HOVER INTERACTION OVERRIDES ── */
 .git-timeline-row:has(.commit-card:hover) .git-node {
-  transform: scale(1.4);
+  transform: translate(-50%, -50%) scale(1.4);
 }
 .git-timeline-row:has(.commit-card[data-branch="exp"]:hover) .git-node {
-  fill: var(--accent);
+  background-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
   filter: drop-shadow(0 0 8px var(--accent));
 }
 .git-timeline-row:has(.commit-card[data-branch="edu"]:hover) .git-node {
-  fill: var(--accent2);
+  background-color: var(--accent2);
+  box-shadow: 0 0 12px var(--accent2);
   filter: drop-shadow(0 0 8px var(--accent2));
 }
 .git-timeline-row:has(.commit-card[data-branch="lead"]:hover) .git-node {
-  fill: #C2904F;
+  background-color: #C2904F;
+  box-shadow: 0 0 12px #C2904F;
   filter: drop-shadow(0 0 8px #C2904F);
+}
+
+/* Branch hover glows */
+.git-timeline-row:has(.commit-card[data-branch="exp"]:hover) .branch-line.exp-trunk {
+  stroke-width: 5px;
+  opacity: 1;
+}
+.git-timeline-row:has(.commit-card[data-branch="edu"]:hover) .branch-line.edu-branch {
+  stroke-width: 5px;
+  opacity: 1;
+}
+.git-timeline-row:has(.commit-card[data-branch="lead"]:hover) .branch-line.lead-branch {
+  stroke-width: 5px;
+  opacity: 1;
 }
 
 /* Responsive Overrides */
