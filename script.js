@@ -328,8 +328,15 @@ window.updateTimelineGraph = function() {
   rows.forEach((row) => {
     const card = row.querySelector('.commit-card');
     if (card) {
-      const cardRect = card.getBoundingClientRect();
-      const yCenter = (cardRect.top + cardRect.height / 2) - timelineRect.top;
+      const msg = card.querySelector('.commit-msg');
+      let yCenter;
+      if (msg) {
+        const msgRect = msg.getBoundingClientRect();
+        yCenter = (msgRect.top + msgRect.height / 2) - timelineRect.top;
+      } else {
+        const cardRect = card.getBoundingClientRect();
+        yCenter = (cardRect.top + 70) - timelineRect.top;
+      }
       yPositions.push(yCenter);
     } else {
       yPositions.push(0);
@@ -339,6 +346,9 @@ window.updateTimelineGraph = function() {
   if (yPositions.length < 4) return;
   
   const [y1, y2, y3, y4] = yPositions;
+  
+  const dy12 = y2 - y1;
+  const dy23 = y3 - y2;
   
   // Position HTML nodes
   const n1 = document.getElementById('node-1');
@@ -364,15 +374,16 @@ window.updateTimelineGraph = function() {
   // Draw path leadership
   const pathLead = document.getElementById('path-lead');
   if (pathLead) {
-    const d = `M ${xExp},${y1} C ${xExp},${y1 + 40} ${xLead},${y2 - 40} ${xLead},${y2} C ${xLead},${y2 + 40} ${xExp},${y3 - 40} ${xExp},${y3}`;
+    const d = `M ${xExp},${y1} C ${xExp},${y1 + dy12 * 0.45} ${xLead},${y2 - dy12 * 0.45} ${xLead},${y2} C ${xLead},${y2 + dy23 * 0.45} ${xExp},${y3 - dy23 * 0.45} ${xExp},${y3}`;
     pathLead.setAttribute('d', d);
   }
   
   // Draw path education
-  const pathEdu = document.getElementById('path-edu');
-  if (pathEdu) {
-    const d = `M ${xExp},${y2} C ${xExp},${y2 + 40} ${xEdu},${y3 - 40} ${xEdu},${y3} L ${xEdu},${y4 + 40}`;
-    pathEdu.setAttribute('d', d);
+  const pathEdu = document.getElementById('path-education'); // wait! let's verify if the path element id in index.html is path-edu or path-education. It is path-edu! Let's make sure it is path-edu!
+  const pathEduEl = document.getElementById('path-edu');
+  if (pathEduEl) {
+    const d = `M ${xExp},${y2} C ${xExp},${y2 + dy23 * 0.45} ${xEdu},${y3 - dy23 * 0.45} ${xEdu},${y3} L ${xEdu},${y4 + 40}`;
+    pathEduEl.setAttribute('d', d);
   }
 };
 
