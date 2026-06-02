@@ -1023,14 +1023,27 @@ body.hero-ready .hero-bottom {
 .git-timeline-row:last-child {
   padding-bottom: 0;
 }
-.git-graph-cell {
-  position: relative;
-  height: 100%;
+.git-timeline-graph-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 1;
 }
-.git-graph-svg {
+.git-timeline-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   display: block;
+  overflow: visible;
+}
+.git-graph-spacer {
+  width: 120px;
+  height: 100%;
 }
 
 /* Branch Lines */
@@ -1204,36 +1217,28 @@ body.hero-ready .hero-bottom {
 }
 
 /* ── HOVER INTERACTION OVERRIDES ── */
-.git-timeline-row:has(.commit-card:hover) .git-node {
-  transform: translate(-50%, -50%) scale(1.4);
+.git-node.hovered {
+  transform: translate(-50%, -50%) scale(1.45);
 }
-.git-timeline-row:has(.commit-card[data-branch="exp"]:hover) .git-node {
+.git-node.hovered.node-exp-1 {
   background-color: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
+  box-shadow: 0 0 14px var(--accent);
   filter: drop-shadow(0 0 8px var(--accent));
 }
-.git-timeline-row:has(.commit-card[data-branch="edu"]:hover) .git-node {
+.git-node.hovered.node-edu-1, .git-node.hovered.node-edu-2 {
   background-color: var(--accent2);
-  box-shadow: 0 0 12px var(--accent2);
+  box-shadow: 0 0 14px var(--accent2);
   filter: drop-shadow(0 0 8px var(--accent2));
 }
-.git-timeline-row:has(.commit-card[data-branch="lead"]:hover) .git-node {
+.git-node.hovered.node-lead-1 {
   background-color: #C2904F;
-  box-shadow: 0 0 12px #C2904F;
+  box-shadow: 0 0 14px #C2904F;
   filter: drop-shadow(0 0 8px #C2904F);
 }
 
 /* Branch hover glows */
-.git-timeline-row:has(.commit-card[data-branch="exp"]:hover) .branch-line.exp-trunk {
-  stroke-width: 5px;
-  opacity: 1;
-}
-.git-timeline-row:has(.commit-card[data-branch="edu"]:hover) .branch-line.edu-branch {
-  stroke-width: 5px;
-  opacity: 1;
-}
-.git-timeline-row:has(.commit-card[data-branch="lead"]:hover) .branch-line.lead-branch {
-  stroke-width: 5px;
+.branch-line.hovered {
+  stroke-width: 5.5px;
   opacity: 1;
 }
 
@@ -1242,6 +1247,12 @@ body.hero-ready .hero-bottom {
   .git-timeline-row {
     grid-template-columns: 70px 1fr;
     padding-bottom: 1.5rem;
+  }
+  .git-timeline-graph-wrap {
+    width: 70px;
+  }
+  .git-graph-spacer {
+    width: 70px;
   }
 }
 

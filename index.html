@@ -214,16 +214,23 @@
       </div>
       <div class="git-timeline fi fi-d1">
         
+        <!-- Continuous branch tree container (absolute) -->
+        <div class="git-timeline-graph-wrap">
+          <svg class="git-timeline-svg" id="git-timeline-svg">
+            <path id="path-exp" class="branch-line exp-trunk" d="" />
+            <path id="path-lead" class="branch-line lead-branch" d="" />
+            <path id="path-edu" class="branch-line edu-branch" d="" />
+          </svg>
+          <div class="git-node node-exp-1" id="node-1"></div>
+          <div class="git-node node-lead-1" id="node-2"></div>
+          <div class="git-node node-edu-1" id="node-3"></div>
+          <div class="git-node node-edu-2" id="node-4"></div>
+        </div>
+
         <!-- Row 1: Experience -->
         <div class="git-timeline-row">
-          <div class="git-graph-cell">
-            <svg class="git-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <!-- Trunk -->
-              <path class="branch-line exp-trunk" d="M 50,0 L 50,100" />
-            </svg>
-            <div class="git-node node-exp-1"></div>
-          </div>
-          <div class="commit-card" data-branch="exp">
+          <div class="git-graph-spacer"></div>
+          <div class="commit-card" data-branch="exp" data-node="node-1">
             <div class="commit-header">
               <span class="commit-hash">commit nk2025e</span>
               <span class="commit-branch-tag exp">main</span>
@@ -245,16 +252,8 @@
 
         <!-- Row 2: Leadership -->
         <div class="git-timeline-row">
-          <div class="git-graph-cell">
-            <svg class="git-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <!-- Trunk -->
-              <path class="branch-line exp-trunk" d="M 50,0 L 50,100" />
-              <!-- Leadership Branch out and Node -->
-              <path class="branch-line lead-branch" d="M 50,0 C 50,30 80,30 80,50 C 80,70 50,70 50,100" />
-            </svg>
-            <div class="git-node node-lead-1"></div>
-          </div>
-          <div class="commit-card" data-branch="lead">
+          <div class="git-graph-spacer"></div>
+          <div class="commit-card" data-branch="lead" data-node="node-2">
             <div class="commit-header">
               <span class="commit-hash">commit acm2024l</span>
               <span class="commit-branch-tag lead">leadership</span>
@@ -276,16 +275,8 @@
 
         <!-- Row 3: B.Tech Education -->
         <div class="git-timeline-row">
-          <div class="git-graph-cell">
-            <svg class="git-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <!-- Trunk -->
-              <path class="branch-line exp-trunk" d="M 50,0 L 50,100" />
-              <!-- Education Branch out -->
-              <path class="branch-line edu-branch" d="M 50,0 C 50,30 20,30 20,50 L 20,100" />
-            </svg>
-            <div class="git-node node-edu-1"></div>
-          </div>
-          <div class="commit-card" data-branch="edu">
+          <div class="git-graph-spacer"></div>
+          <div class="commit-card" data-branch="edu" data-node="node-3">
             <div class="commit-header">
               <span class="commit-hash">commit vit2027e</span>
               <span class="commit-branch-tag edu">education</span>
@@ -307,16 +298,8 @@
 
         <!-- Row 4: School -->
         <div class="git-timeline-row">
-          <div class="git-graph-cell">
-            <svg class="git-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <!-- Trunk terminates -->
-              <path class="branch-line exp-trunk" d="M 50,0 L 50,20" />
-              <!-- Education line continues and terminates -->
-              <path class="branch-line edu-branch" d="M 20,0 L 20,50" />
-            </svg>
-            <div class="git-node node-edu-2"></div>
-          </div>
-          <div class="commit-card" data-branch="edu">
+          <div class="git-graph-spacer"></div>
+          <div class="commit-card" data-branch="edu" data-node="node-4">
             <div class="commit-header">
               <span class="commit-hash">commit sun2023s</span>
               <span class="commit-branch-tag edu">education</span>
