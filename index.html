@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nithesh Kumar Sekar | Building What Machines Can Learn</title>
-  <meta name="description" content="Portfolio of Nithesh Kumar Sekar – CSE student at VIT-AP, specializing in Machine Learning and AI engineering, with full-stack development capabilities." />
+  <meta name="description"
+    content="Portfolio of Nithesh Kumar Sekar – CSE student at VIT-AP, specializing in Machine Learning and AI engineering, with full-stack development capabilities." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- ── CUSTOM CURSORS ── -->
@@ -16,7 +19,12 @@
   <div id="c2"></div>
   <div class="proj-hover-img" id="hover-card"></div>
 
-
+  <!-- ── AMBIENT BACKGROUND GLOW ── -->
+  <div class="ambient-glow">
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+    <div class="blob-3"></div>
+  </div>
 
   <!-- ── BOOT INTRO OVERLAY ── -->
   <div id="intro-overlay">
@@ -33,7 +41,7 @@
 
   <!-- ── NAVIGATION ── -->
   <nav>
-    <div class="n-logo"><span></span></div>
+    <div class="n-logo">NK<span>.</span></div>
     <ul class="n-links">
       <li><a href="#works">work</a></li>
       <li><a href="#about">about</a></li>
@@ -49,22 +57,8 @@
 
   <!-- ── HERO ── -->
   <section class="hero" id="hero">
-    <!-- HERO BACKGROUND: PREMIUM AURORA -->
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="hero-shimmer"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-line"></div>
-    
-    <div class="hero-particles">
-      <div class="dot d1"></div>
-      <div class="dot d2"></div>
-      <div class="dot d3"></div>
-      <div class="dot d4"></div>
-      <div class="dot d5"></div>
-    </div>
-
+    <div class="hero-bg-text">ML & AI</div>
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-content-wrap">
       <div class="hero-content-left">
         <div class="hero-tag">Machine Learning & AI · VIT-AP</div>
@@ -83,7 +77,7 @@
           </div>
           <div class="terminal-body">
             <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">whoami</span></div>
-            <div class="t-output">Nithesh Kumar Sekar<br/>CSE Student @ VIT-AP · 2023–2027</div>
+            <div class="t-output">Nithesh Kumar Sekar<br />CSE Student @ VIT-AP · 2023–2027</div>
             <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat focus.json</span></div>
             <div class="t-output">
               <span class="t-tag">Full Stack</span>
@@ -99,15 +93,14 @@
         </div>
       </div>
     </div>
-    
     <div class="hero-bottom">
-      <p class="hero-desc">Specializing in Machine Learning and Artificial Intelligence. Designing neural network classifiers, computer vision pipelines, and building scalable software solutions.</p>
+      <p class="hero-desc">Specializing in Machine Learning and Artificial Intelligence. Designing neural network
+        classifiers, computer vision pipelines, and building scalable software solutions.</p>
       <div class="hero-btns">
         <a href="#works" class="btn-a">View Work</a>
         <a href="#contact" class="btn-b">Get In Touch</a>
       </div>
     </div>
-    
     <div class="scroll-hint">
       <span>SCROLL</span>
       <div class="scroll-line"></div>
@@ -144,27 +137,33 @@
         <span class="p-num">001</span>
         <div class="p-info">
           <div class="p-name">Memory Firewall – AI Agent Security</div>
-          <div class="p-desc">Active defense system intercepting memory reads/writes to detect poisoning, contradictions, and risk using LangGraph and FastAPI</div>
+          <div class="p-desc">Active defense system intercepting memory reads/writes to detect poisoning,
+            contradictions, and risk using LangGraph and FastAPI</div>
         </div>
-        <div class="p-tags"><span class="p-tag">LangGraph</span><span class="p-tag">FastAPI</span><span class="p-tag">PostgreSQL</span><span class="p-tag">Neo4j</span></div>
+        <div class="p-tags"><span class="p-tag">LangGraph</span><span class="p-tag">FastAPI</span><span
+            class="p-tag">PostgreSQL</span><span class="p-tag">Neo4j</span></div>
         <span class="p-year">2026</span>
       </div>
       <div class="project-item" data-emoji="🤟">
         <span class="p-num">002</span>
         <div class="p-info">
           <div class="p-name">HandSpeak – Sign Language Recognition</div>
-          <div class="p-desc">Real-time gesture translation using GCN, MLP & MediaPipe camera tracking with FastAPI inference</div>
+          <div class="p-desc">Real-time gesture translation using GCN, MLP & MediaPipe camera tracking with FastAPI
+            inference</div>
         </div>
-        <div class="p-tags"><span class="p-tag">PyTorch</span><span class="p-tag">GCN</span><span class="p-tag">MediaPipe</span><span class="p-tag">FastAPI</span></div>
+        <div class="p-tags"><span class="p-tag">PyTorch</span><span class="p-tag">GCN</span><span
+            class="p-tag">MediaPipe</span><span class="p-tag">FastAPI</span></div>
         <span class="p-year">2025</span>
       </div>
       <div class="project-item" data-emoji="⚡">
         <span class="p-num">003</span>
         <div class="p-info">
           <div class="p-name">TodoPro Enterprise</div>
-          <div class="p-desc">Production-grade secure Todo web app with AES-256 encryption, JWT authentication, and K8s scaling</div>
+          <div class="p-desc">Production-grade secure Todo web app with AES-256 encryption, JWT authentication, and K8s
+            scaling</div>
         </div>
-        <div class="p-tags"><span class="p-tag">React</span><span class="p-tag">Node.js</span><span class="p-tag">PostgreSQL</span><span class="p-tag">Docker</span></div>
+        <div class="p-tags"><span class="p-tag">React</span><span class="p-tag">Node.js</span><span
+            class="p-tag">PostgreSQL</span><span class="p-tag">Docker</span></div>
         <span class="p-year">2024</span>
       </div>
     </div>
@@ -177,15 +176,31 @@
       <blockquote class="big-quote">
         "I don't just write code —<br>I build <strong>intelligent systems</strong> that bridge AI and web execution."
       </blockquote>
-      <p class="about-body">I'm a B.Tech Computer Science & Engineering student at Vellore Institute of Technology - AP, graduating in 2027. I specialize in Machine Learning and Artificial Intelligence, combining neural network architecture with robust cloud and full-stack capabilities.</p>
-      <p class="about-body">From creating GCN classification pipelines to writing production-ready APIs with AES encryption and JWT verification, I enjoy solving complex problems at scale. Always active in student developer networks, led ACM event planning, and shipped actual products.</p>
+      <p class="about-body">I'm a B.Tech Computer Science & Engineering student at Vellore Institute of Technology - AP,
+        graduating in 2027. I specialize in Machine Learning and Artificial Intelligence, combining neural network
+        architecture with robust cloud and full-stack capabilities.</p>
+      <p class="about-body">From creating GCN classification pipelines to writing production-ready APIs with AES
+        encryption and JWT verification, I enjoy solving complex problems at scale. Always active in student developer
+        networks, led ACM event planning, and shipped actual products.</p>
     </div>
     <div class="about-right fi fi-d2">
       <div class="stat-grid">
-        <div class="stat-cell"><div class="stat-big" data-count="4">0</div><div class="stat-small">ACADEMIC YEAR</div></div>
-        <div class="stat-cell"><div class="stat-big" data-count="12">0</div><div class="stat-small">PROJECTS SHIPPED</div></div>
-        <div class="stat-cell"><div class="stat-big" data-count="15">0</div><div class="stat-small">MODELS TRAINED</div></div>
-        <div class="stat-cell"><div class="stat-big">∞</div><div class="stat-small">CHAI CUPS</div></div>
+        <div class="stat-cell">
+          <div class="stat-big" data-count="4">0</div>
+          <div class="stat-small">ACADEMIC YEAR</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-big" data-count="12">0</div>
+          <div class="stat-small">PROJECTS SHIPPED</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-big" data-count="15">0</div>
+          <div class="stat-small">MODELS TRAINED</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-big">∞</div>
+          <div class="stat-small">CHAI CUPS</div>
+        </div>
       </div>
       <ul class="service-list">
         <li class="service-item"><span>Full Stack Development</span><span>→ PRIMARY</span></li>
@@ -202,22 +217,46 @@
     <h2 class="s-title">Tech <em>orbit</em></h2>
     <div class="orbit-wrap">
       <div class="orbit-ring orbit-ring-1">
-        <div class="orbit-skill-wrap" style="top:0;left:50%"><div class="orbit-skill">React</div></div>
-        <div class="orbit-skill-wrap" style="top:50%;left:100%"><div class="orbit-skill">Node.js</div></div>
-        <div class="orbit-skill-wrap" style="top:100%;left:50%"><div class="orbit-skill">Python</div></div>
-        <div class="orbit-skill-wrap" style="top:50%;left:0"><div class="orbit-skill">PyTorch</div></div>
+        <div class="orbit-skill-wrap" style="top:0;left:50%">
+          <div class="orbit-skill">React</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:50%;left:100%">
+          <div class="orbit-skill">Node.js</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:100%;left:50%">
+          <div class="orbit-skill">Python</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:50%;left:0">
+          <div class="orbit-skill">PyTorch</div>
+        </div>
       </div>
       <div class="orbit-ring orbit-ring-2">
-        <div class="orbit-skill-wrap" style="top:8%;left:75%"><div class="orbit-skill">FastAPI</div></div>
-        <div class="orbit-skill-wrap" style="top:75%;left:90%"><div class="orbit-skill">PostgreSQL</div></div>
-        <div class="orbit-skill-wrap" style="top:92%;left:25%"><div class="orbit-skill">Redis</div></div>
-        <div class="orbit-skill-wrap" style="top:25%;left:8%"><div class="orbit-skill">OpenCV</div></div>
+        <div class="orbit-skill-wrap" style="top:8%;left:75%">
+          <div class="orbit-skill">FastAPI</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:75%;left:90%">
+          <div class="orbit-skill">PostgreSQL</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:92%;left:25%">
+          <div class="orbit-skill">Redis</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:25%;left:8%">
+          <div class="orbit-skill">OpenCV</div>
+        </div>
       </div>
       <div class="orbit-ring orbit-ring-3">
-        <div class="orbit-skill-wrap" style="top:5%;left:50%"><div class="orbit-skill">MediaPipe</div></div>
-        <div class="orbit-skill-wrap" style="top:50%;left:97%"><div class="orbit-skill">GCN</div></div>
-        <div class="orbit-skill-wrap" style="top:95%;left:50%"><div class="orbit-skill">JWT</div></div>
-        <div class="orbit-skill-wrap" style="top:50%;left:3%"><div class="orbit-skill">Docker</div></div>
+        <div class="orbit-skill-wrap" style="top:5%;left:50%">
+          <div class="orbit-skill">MediaPipe</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:50%;left:97%">
+          <div class="orbit-skill">GCN</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:95%;left:50%">
+          <div class="orbit-skill">JWT</div>
+        </div>
+        <div class="orbit-skill-wrap" style="top:50%;left:3%">
+          <div class="orbit-skill">Docker</div>
+        </div>
       </div>
       <div class="orbit-center">STACK</div>
     </div>
@@ -280,8 +319,10 @@
               </div>
               <div class="commit-msg">ACM Student Chapter – Event & Web Chair</div>
               <ul class="commit-details">
-                <li>Orchestrated campus-wide hackathons and competitive programming challenges for 500+ participants.</li>
-                <li>Developed central event platforms using Node.js, Express, and PostgreSQL for real-time leaderboards.</li>
+                <li>Orchestrated campus-wide hackathons and competitive programming challenges for 500+ participants.
+                </li>
+                <li>Developed central event platforms using Node.js, Express, and PostgreSQL for real-time leaderboards.
+                </li>
                 <li>Managed event logistics, speaker invitations, and technical workshop curriculum planning.</li>
               </ul>
             </div>
@@ -408,4 +449,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
