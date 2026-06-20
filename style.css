@@ -975,7 +975,6 @@ body.hero-ready .hero-bottom {
   letter-spacing: .1em;
 }
 
-.p-info {}
 
 .p-name {
   font-family: var(--fd);
@@ -1056,7 +1055,6 @@ body.hero-ready .hero-bottom {
   border-bottom: 1px solid rgba(19, 31, 26, .05);
 }
 
-.about-left {}
 
 .big-quote {
   font-family: var(--fs);
@@ -1086,7 +1084,6 @@ body.hero-ready .hero-bottom {
   margin-bottom: 1.5rem;
 }
 
-.about-right {}
 
 .stat-grid {
   display: grid;

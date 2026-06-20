@@ -130,7 +130,7 @@ function startNameScramble() {
   if (!nameEl) return;
   const target = 'NITHESH';
   let currentIteration = 0;
-  const maxIterations = 45; // ~3.5 seconds total
+  const maxIterations = 90; // ~6.75 seconds total
   const intervalTime = 75;
 
   const scrambleInterval = setInterval(() => {
