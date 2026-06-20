@@ -33,10 +33,10 @@ a, button, .project-item, .cert-card, .contact-card, .btn, input, textarea { cur
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -3;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: #FAF9F5;
+  background: var(--bg);
 }
 .blob-1, .blob-2, .blob-3 {
   position: absolute;
@@ -93,7 +93,7 @@ a, button, .project-item, .cert-card, .contact-card, .btn, input, textarea { cur
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -2;
+  z-index: -1;
   pointer-events: none;
   opacity: 0.8;
 }
