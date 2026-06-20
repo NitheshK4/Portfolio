@@ -31,61 +31,71 @@ a, button, .project-item, .cert-card, .contact-card, .btn, input, textarea { cur
 .ambient-glow {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
   overflow: hidden;
   pointer-events: none;
-  background: var(--bg);
+  background: #FAF9F5;
 }
 .blob-1, .blob-2, .blob-3 {
   position: absolute;
   border-radius: 50%;
-  filter: blur(140px);
-  mix-blend-mode: multiply;
-  opacity: 0.28;
+  filter: blur(120px);
+  opacity: 0.6;
   pointer-events: none;
   will-change: transform;
 }
 .blob-1 {
-  width: 55vw;
-  height: 55vw;
-  background: radial-gradient(circle, var(--accent) 0%, rgba(255, 92, 57, 0) 70%);
-  top: -10%;
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(circle, rgba(255, 92, 57, 0.25) 0%, rgba(255, 92, 57, 0) 70%);
+  top: -15%;
   left: -10%;
-  animation: float-blob-1 25s ease-in-out infinite alternate;
+  animation: float-blob-1 18s ease-in-out infinite alternate;
 }
 .blob-2 {
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, #f0c896 0%, rgba(240, 200, 150, 0) 70%);
-  bottom: -5%;
-  right: -5%;
-  animation: float-blob-2 30s ease-in-out infinite alternate;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 70%);
+  bottom: -15%;
+  right: -10%;
+  animation: float-blob-2 22s ease-in-out infinite alternate;
 }
 .blob-3 {
-  width: 45vw;
-  height: 45vw;
-  background: radial-gradient(circle, #aed5bf 0%, rgba(174, 213, 191, 0) 70%);
-  top: 40%;
-  left: 45%;
-  animation: float-blob-3 28s ease-in-out infinite alternate;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(30, 78, 89, 0.18) 0%, rgba(30, 78, 89, 0) 70%);
+  top: 30%;
+  left: 40%;
+  animation: float-blob-3 20s ease-in-out infinite alternate;
 }
 
 @keyframes float-blob-1 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(8vw, 12vh) scale(1.1); }
-  100% { transform: translate(-5vw, 6vh) scale(0.95); }
+  50% { transform: translate(12vw, 15vh) scale(1.15); }
+  100% { transform: translate(-8vw, 8vh) scale(0.9); }
 }
 @keyframes float-blob-2 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-10vw, -8vh) scale(0.9); }
-  100% { transform: translate(4vw, -15vh) scale(1.05); }
+  50% { transform: translate(-15vw, -12vh) scale(0.85); }
+  100% { transform: translate(6vw, -20vh) scale(1.1); }
 }
 @keyframes float-blob-3 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-6vw, 10vh) scale(1.15); }
-  100% { transform: translate(8vw, -5vh) scale(0.9); }
+  50% { transform: translate(-10vw, 15vh) scale(1.2); }
+  100% { transform: translate(12vw, -10vh) scale(0.95); }
+}
+
+/* ── GLOBAL CANVAS ── */
+#global-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 /* ── CUSTOM SCROLLBAR ── */
@@ -369,15 +379,6 @@ nav {
   user-select: none;
   letter-spacing: -.05em;
   z-index: 0;
-}
-#hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.85;
 }
 .hero-content-wrap {
   display: flex;

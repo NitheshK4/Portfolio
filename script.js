@@ -208,21 +208,20 @@ if (emailBtn) {
   });
 }
 
-// ── INTERACTIVE NEURAL CONSTELLATION CANVAS ──
-(function initNeuralCanvas() {
-  const canvas = document.getElementById('hero-canvas');
+// ── GLOBAL INTERACTIVE DATA FLOW CANVAS ──
+(function initGlobalCanvas() {
+  const canvas = document.getElementById('global-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let width = 0, height = 0;
   let particles = [];
-  const maxParticles = window.innerWidth < 768 ? 25 : 55;
-  const connectDist = 110;
+  const maxParticles = window.innerWidth < 768 ? 40 : 100;
+  const connectDist = window.innerWidth < 768 ? 100 : 150;
 
   function resize() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    width = rect.width;
-    height = rect.height;
+    width = window.innerWidth;
+    height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
   }
@@ -233,21 +232,29 @@ if (emailBtn) {
     constructor() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.45;
-      this.vy = (Math.random() - 0.5) * 0.45;
-      this.radius = Math.random() * 2 + 1;
+      this.vx = (Math.random() - 0.5) * 0.6;
+      this.vy = (Math.random() - 0.5) * 0.6;
+      this.radius = Math.random() * 1.5 + 0.5;
+      this.baseAlpha = Math.random() * 0.5 + 0.2;
     }
     update() {
-      this.x += this.vx;
-      this.y += this.vy;
+      // Gentle flow to the right
+      this.x += this.vx + 0.3;
+      
+      // Organic wave motion
+      const wave = Math.sin(this.x * 0.005 + Date.now() * 0.001) * 0.8;
+      this.y += this.vy + wave;
 
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
+      // Wrap around seamlessly
+      if (this.x > width + 50) this.x = -50;
+      if (this.x < -50) this.x = width + 50;
+      if (this.y > height + 50) this.y = -50;
+      if (this.y < -50) this.y = height + 50;
     }
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 92, 57, 0.45)';
+      ctx.fillStyle = `rgba(255, 92, 57, ${this.baseAlpha})`;
       ctx.fill();
     }
   }
@@ -269,7 +276,7 @@ if (emailBtn) {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < connectDist) {
-          const alpha = (1 - dist / connectDist) * 0.16;
+          const alpha = (1 - dist / connectDist) * 0.15;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -279,25 +286,26 @@ if (emailBtn) {
         }
       }
 
-      const rect = canvas.getBoundingClientRect();
-      const mouseCanvasX = mx - rect.left;
-      const mouseCanvasY = my - rect.top;
+      // Mouse interaction
+      const dx = particles[i].x - mx;
+      const dy = particles[i].y - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const mouseConnectDist = 180;
 
-      if (mx >= rect.left && mx <= rect.right && my >= rect.top && my <= rect.bottom) {
-        const dx = particles[i].x - mouseCanvasX;
-        const dy = particles[i].y - mouseCanvasY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const mouseConnectDist = 140;
-
-        if (dist < mouseConnectDist) {
-          const alpha = (1 - dist / mouseConnectDist) * 0.28;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouseCanvasX, mouseCanvasY);
-          ctx.strokeStyle = `rgba(255, 92, 57, ${alpha})`;
-          ctx.lineWidth = 1.0;
-          ctx.stroke();
-        }
+      if (dist < mouseConnectDist) {
+        // Draw line to mouse
+        const alpha = (1 - dist / mouseConnectDist) * 0.2;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mx, my);
+        ctx.strokeStyle = `rgba(255, 92, 57, ${alpha})`;
+        ctx.lineWidth = 1.0;
+        ctx.stroke();
+        
+        // Slight repulsion from mouse
+        const force = (mouseConnectDist - dist) / mouseConnectDist;
+        particles[i].x += (dx / dist) * force * 0.8;
+        particles[i].y += (dy / dist) * force * 0.8;
       }
     }
 
