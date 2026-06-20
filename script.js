@@ -206,7 +206,7 @@ if (emailBtn) {
     tempLink.href = mailtoUrl;
     tempLink.click();
   });
-})();
+}
 
 
 
