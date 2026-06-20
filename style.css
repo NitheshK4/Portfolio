@@ -364,6 +364,85 @@ nav {
   overflow: hidden;
   border-bottom: 1px solid rgba(18, 18, 20, .05);
 }
+
+/* Hero Background Animations */
+.hero-blob {
+  position: absolute;
+  background: #D85A30;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-a {
+  width: 600px; height: 600px;
+  opacity: 0.055;
+  top: -150px; left: -150px;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  animation: drift1 11s ease-in-out infinite;
+}
+
+.blob-b {
+  width: 450px; height: 450px;
+  opacity: 0.06;
+  bottom: -100px; right: -100px;
+  border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%;
+  animation: drift2 14s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.blob-c {
+  width: 350px; height: 350px;
+  opacity: 0.05;
+  top: 40%; left: 50%;
+  border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+  animation: drift3 12s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0,0) scale(1); border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  33%  { transform: translate(40px, -30px) scale(1.05); border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; }
+  66%  { transform: translate(-25px, 35px) scale(0.97); border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+}
+
+@keyframes drift2 {
+  0%, 100% { transform: translate(0,0) scale(1); border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; }
+  50%  { transform: translate(-40px, 25px) scale(1.07); border-radius: 40% 60% 55% 45% / 50% 60% 40% 55%; }
+}
+
+@keyframes drift3 {
+  0%, 100% { transform: translate(0,0) scale(1); border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%; }
+  50%  { transform: translate(30px, 30px) scale(0.95); border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-particles .dot {
+  position: absolute;
+  background: #D85A30;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float-dot ease-in-out infinite alternate;
+}
+.hero-particles .d1 { width: 3px; height: 3px; top: 20%; left: 15%; animation-duration: 8s; animation-delay: 0s; }
+.hero-particles .d2 { width: 4px; height: 4px; top: 60%; left: 10%; animation-duration: 11s; animation-delay: -2s; }
+.hero-particles .d3 { width: 2px; height: 2px; top: 15%; left: 80%; animation-duration: 9s; animation-delay: -4s; }
+.hero-particles .d4 { width: 5px; height: 5px; top: 75%; left: 85%; animation-duration: 12s; animation-delay: -1s; }
+.hero-particles .d5 { width: 3px; height: 3px; top: 40%; left: 50%; animation-duration: 10s; animation-delay: -5s; }
+.hero-particles .d6 { width: 2px; height: 2px; top: 85%; left: 35%; animation-duration: 13s; animation-delay: -3s; }
+.hero-particles .d7 { width: 4px; height: 4px; top: 30%; left: 65%; animation-duration: 9.5s; animation-delay: -6s; }
+.hero-particles .d8 { width: 3px; height: 3px; top: 10%; left: 45%; animation-duration: 14s; animation-delay: -7s; }
+
+@keyframes float-dot {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(25px, -35px); }
+}
+
 .hero-bg-text {
   position: absolute;
   top: 50%;
