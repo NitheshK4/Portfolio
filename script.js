@@ -306,5 +306,113 @@ if (emailBtn) {
 
 })();
 
+// ── FLOATING SHAPES & GLASS SPHERES ORGANIC DRIFT & PARALLAX ──
+(function initOrganicFloating() {
+  const shapes = document.querySelectorAll('.floating-shapes .shape');
+  const spheres = document.querySelectorAll('.hero-glass-sphere');
+  
+  if (shapes.length === 0 && spheres.length === 0) return;
+
+  // Initialize shapes (double-wrapped for separate drift and parallax)
+  const shapeData = Array.from(shapes).map(shape => {
+    const inner = shape.querySelector('.shape-inner');
+    const depth = parseFloat(shape.getAttribute('data-depth')) || 0.1;
+    const scrollSpeed = depth * 1.3;
+    
+    return {
+      type: 'shape',
+      outer: shape,
+      inner: inner,
+      depth: depth,
+      scrollSpeed: scrollSpeed,
+      cx: 0, cy: 0, tx: 0, ty: 0,
+      
+      // Multi-frequency organic drift parameters (infinite non-repeating paths)
+      px1: Math.random() * 100, py1: Math.random() * 100,
+      px2: Math.random() * 100, py2: Math.random() * 100,
+      sx1: 0.0002 + Math.random() * 0.0003, sy1: 0.0002 + Math.random() * 0.0003,
+      sx2: 0.0005 + Math.random() * 0.0006, sy2: 0.0005 + Math.random() * 0.0006,
+      ampX: 80 + Math.random() * 90, ampY: 80 + Math.random() * 90,
+      rotPhase: Math.random() * 100, rotSpeed: 0.00015 + Math.random() * 0.0002
+    };
+  });
+
+  // Initialize spheres (single-wrapped, combined transform)
+  const sphereData = Array.from(spheres).map((sphere, index) => {
+    const depth = index === 0 ? 0.15 : 0.08;
+    const scrollSpeed = depth * 1.2;
+    
+    return {
+      type: 'sphere',
+      element: sphere,
+      depth: depth,
+      scrollSpeed: scrollSpeed,
+      cx: 0, cy: 0, tx: 0, ty: 0,
+      
+      // Organic drift parameters (slower, large motion for big spheres)
+      px1: Math.random() * 100, py1: Math.random() * 100,
+      px2: Math.random() * 100, py2: Math.random() * 100,
+      sx1: 0.0001 + Math.random() * 0.0002, sy1: 0.0001 + Math.random() * 0.0002,
+      sx2: 0.0003 + Math.random() * 0.0004, sy2: 0.0003 + Math.random() * 0.0004,
+      ampX: 120 + Math.random() * 80, ampY: 120 + Math.random() * 80,
+      rotPhase: Math.random() * 100, rotSpeed: 0.0001 + Math.random() * 0.00015
+    };
+  });
+
+  const allItems = [...shapeData, ...sphereData];
+  let currentScrollY = 0;
+  let targetScrollY = 0;
+
+  function update() {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const time = Date.now();
+
+    targetScrollY = window.scrollY;
+    currentScrollY += (targetScrollY - currentScrollY) * 0.1;
+
+    allItems.forEach(item => {
+      // Parallax Tracking
+      item.tx = (mx - centerX) * item.depth;
+      item.ty = (my - centerY) * item.depth;
+      item.cx += (item.tx - item.cx) * 0.08;
+      item.cy += (item.ty - item.cy) * 0.08;
+
+      const scrollYOffset = currentScrollY * item.scrollSpeed;
+      const scrollRotation = currentScrollY * 0.04 * item.depth;
+
+      // Organic Drift Calculation (Lissajous-like chaotic smooth path)
+      const driftX = Math.sin(time * item.sx1 + item.px1) * item.ampX * 0.65 + 
+                     Math.cos(time * item.sx2 + item.px2) * item.ampX * 0.35;
+      const driftY = Math.cos(time * item.sy1 + item.py1) * item.ampY * 0.65 + 
+                     Math.sin(time * item.sy2 + item.py2) * item.ampY * 0.35;
+      const driftRotation = Math.sin(time * item.rotSpeed + item.rotPhase) * 35;
+
+      if (item.type === 'shape') {
+        // Outer shape element drifts organically
+        if (item.outer) {
+          item.outer.style.transform = `translate3d(${driftX}px, ${driftY}px, 0) rotate(${driftRotation}deg)`;
+        }
+        // Inner shape element applies mouse parallax + scroll parallax
+        if (item.inner) {
+          item.inner.style.transform = `translate3d(${item.cx}px, ${item.cy + scrollYOffset}px, 0) rotate(${scrollRotation}deg)`;
+        }
+      } else if (item.type === 'sphere') {
+        // Combined transform for single-wrapped spheres
+        if (item.element) {
+          const totalX = driftX + item.cx;
+          const totalY = driftY + item.cy + scrollYOffset;
+          const totalRot = driftRotation + scrollRotation;
+          item.element.style.transform = `translate3d(${totalX}px, ${totalY}px, 0) rotate(${totalRot}deg)`;
+        }
+      }
+    });
+
+    requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+})();
+
 
 
